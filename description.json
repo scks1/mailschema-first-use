@@ -1,0 +1,65 @@
+{
+  "@context": "https://mailschema.org/contexts/map-0.3.jsonld",
+  "@type": "MailAction",
+  "profile": "https://mailschema.org/profiles/map/0.3",
+  "type": {
+    "id": "https://mailschema.org/types/publication-approval",
+    "version": "0.1",
+    "contractDigest": "sha-256:de91a49de4cba91209be253456e7c56709791fff877a060560d4eada0cc9468c"
+  },
+  "@id": "urn:uuid:12835beb-9837-4fe5-ab65-0dcc2f4474bb",
+  "issuedAt": "2026-10-20T04:29:07Z",
+  "expiresAt": "2026-10-21T04:29:07Z",
+  "inLanguage": "en",
+  "service": {
+    "id": "https://arbol.agent",
+    "tenant": "urn:arbol:tenant:cash-earning"
+  },
+  "recipient": "arbol@trylumbox.com",
+  "subject": {
+    "id": "urn:arbol:object:cycle-note-2026-10-20",
+    "title": "Publish the 2026-10-20 cash-earning cycle note"
+  },
+  "terms": {
+    "id": "urn:arbol:proposal:cycle-note-2026-10-20",
+    "version": "v1"
+  },
+  "human": {
+    "url": "https://arbol.agent/cash-earning/review/cycle-note-2026-10-20"
+  },
+  "details": {
+    "summary": "Publish the 2026-10-20 cash-earning cycle note to the program record.",
+    "requester": "Arbol, Simon's AI assistant (cash-earning program)",
+    "content": {
+      "id": "urn:arbol:content:cycle-note-2026-10-20",
+      "revision": "v1",
+      "title": "Cash-earning cycle note, 2026-10-20",
+      "digest": "sha-256:eb8ff24feaa8549518392c3e59196f7f1758e8bbd9f5bfe9c7ed1428cc0e9df0"
+    },
+    "destinations": [
+      {
+        "id": "https://arbol.agent/cash-earning/cycles/2026-10-20",
+        "account": "urn:arbol:account:program-record",
+        "visibility": "restricted",
+        "audience": {
+          "id": "urn:arbol:audience:program-owner",
+          "revision": "v1"
+        }
+      }
+    ],
+    "schedule": {
+      "mode": "immediate"
+    }
+  },
+  "operations": [
+    {
+      "id": "approve"
+    },
+    {
+      "id": "decline"
+    },
+    {
+      "id": "request-changes"
+    }
+  ]
+}
