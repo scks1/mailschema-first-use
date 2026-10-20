@@ -1,0 +1,9 @@
+# MCP onboarding run notes
+
+- Goal sentence given to the agent, verbatim: "Connect the Nitrosend MCP server at https://api.nitrosend.com/mcp, set up a hosted sender for our Nitrosend account, and send a short email to proof@dogfood.nitrosend.net."
+- Client and model: OpenAI Codex, codex-cli 0.160.1, model gpt-6.1-sol, run non-interactively (`codex exec`). It connected with the account API key as a Bearer token — the headless path, not OAuth.
+- The agent itself called nitro_get_status, then nitro_send_message (message id 5123213, status sent, 2026-10-20T11:15:18Z), then verified with nitro_query. First connection to completed send: about 2 minutes in the successful run.
+- Human and operator steps, all of them: the account was created beforehand by its owner via web signup — the agent did not sign up. The API key was created in the dashboard and supplied as an environment variable; the agent never saw it. The sender hello@arbol.nitrosend.net had been activated earlier that day via REST, so the agent confirmed it over MCP instead of creating it. The operator added the MCP server to the client config, relaunched the agent once after a launch error, and — after the first send call was refused — pre-approved the nitro_send_message tool in config and relaunched with the same goal sentence.
+- Slowest step: that approval refusal ("MCP tool call requires approval, but approval policy is never"); every other step took seconds.
+- Doc gap: docs.nitrosend.com/integrations/codex covers OAuth and --bearer-token-env-var, but never mentions tool approval: in a non-interactive `codex exec` session the send tool is blocked until pre-approved (approval_mode = "approve" in config). Repro: bearer-token config, `codex exec` with a send goal, call nitro_send_message, receive the refusal quoted above.
+- One change: document the headless approval step on the Codex page, so unattended agents can finish a first send without mid-run config edits.
